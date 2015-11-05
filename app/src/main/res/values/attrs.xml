@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="WavyLine">
+        <attr name="StrokeWidth" format="dimension" />
+        <attr name="Color" format="reference|color" />
+        <attr name="maxamplitude" format="float" />
+        <attr name="period" format="integer" />
+        <attr name="fluctuate">
+            <enum name="smoothing" value="0" />
+            <enum name="rough" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
