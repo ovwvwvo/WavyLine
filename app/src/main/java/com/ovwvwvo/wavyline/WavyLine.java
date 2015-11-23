@@ -71,20 +71,22 @@ public final class WavyLine extends View {
         int width = canvas.getWidth();
         int height = canvas.getHeight();
         float x = 0.0f, y = height / 2;
-        mPath.reset();
-        mPath.moveTo(x, y);
-        float nextX, nextY;
-        while (x < width) {
-            if (x + period < width) {
-                nextX = x + period;
-            } else {
-                nextX = width;
+        if (mPath.isEmpty()) {
+            mPath.reset();
+            mPath.moveTo(x, y);
+            float nextX, nextY;
+            while (x < width) {
+                if (x + period < width) {
+                    nextX = x + period;
+                } else {
+                    nextX = width;
+                }
+                double coefficient = random.nextDouble() * 2 - 1;
+                nextY = (float) (height / 2 + maxamplitude * coefficient * height / 2);
+                mPath.quadTo(x, y, (x + nextX) / 2, (y + nextY) / 2);
+                x = nextX;
+                y = nextY;
             }
-            double coefficient = random.nextDouble() * 2 - 1;
-            nextY = (float) (height / 2 + maxamplitude * coefficient * height / 2);
-            mPath.quadTo(x, y, (x + nextX) / 2, (y + nextY) / 2);
-            x = nextX;
-            y = nextY;
         }
         canvas.drawPath(mPath, mPaint);
     }
